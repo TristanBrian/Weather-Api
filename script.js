@@ -1,4 +1,4 @@
-const apiKey = 'd185864f9a52b05b436e1a73edfc12fc'; // Replace with your OpenWeatherMap API key
+const apiKey = 'f7e22a45201a078a7d7a78ff0002f04d'; // Replace with your OpenWeatherMap API key
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 async function checkWeather(city) {
@@ -16,6 +16,7 @@ async function checkWeather(city) {
 
 function displayWeather(data) {
     const cityElement = document.querySelector('.city');
+    const iconElement = document.querySelector('.weather-icon');
     const tempElement = document.querySelector('.temp');
     const humidityElement = document.querySelector('.humidity');
     const descriptionElement = document.querySelector('.description');
@@ -24,6 +25,9 @@ function displayWeather(data) {
     tempElement.innerHTML = `Temperature: ${Math.round(data.main.temp)}°C`;
     humidityElement.innerHTML = `Humidity: ${data.main.humidity}%`;
     descriptionElement.innerHTML = `Description: ${data.weather[0].description}`;
+    
+    // Set the weather icon based on the API response
+    iconElement.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 }
 
 document.getElementById('search-button').addEventListener('click', () => {
